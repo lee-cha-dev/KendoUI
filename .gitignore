@@ -1,0 +1,8 @@
+*/.env
+
+.idea
+.idea/*
+
+*/kendo-ui-license.txt
+
+*/node_modules

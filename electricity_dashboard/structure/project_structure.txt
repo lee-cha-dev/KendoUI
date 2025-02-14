@@ -1,0 +1,24 @@
+Project Structure (generated on 2025-02-13 19:45:27.731357):
+
+electricity_dashboard/
+├── .env
+├── README.md
+├── index.html
+├── package-lock.json
+├── package.json
+├── src/
+│   ├── app.jsx
+│   ├── components/
+│   │   ├── BuildingAnalytics.jsx
+│   │   ├── ConsumptionCharts.jsx
+│   │   ├── ConsumptionGrid.jsx
+│   │   └── EfficiencyDashboard.jsx
+│   ├── data/
+│   │   ├── customs_electricity_data.csv
+│   │   └── mock-data.jsx
+│   ├── main.jsx
+│   ├── styles/
+│   │   └── app.css
+├── structure/
+│   └── project_structure.txt
+├── vite.config.js
