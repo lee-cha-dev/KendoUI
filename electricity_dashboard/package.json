@@ -1,33 +1,39 @@
 {
-  "name": "electricity-dashboard",
-  "private": true,
+  "name": "electricity_dashboard",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "nodemon --watch src --watch vite.config.js --exec \"npm run start\"",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
-    "@progress/kendo-data-query": "^1.7.0",
-    "@progress/kendo-drawing": "^1.18.0",
-    "@progress/kendo-licensing": "^1.4.0",
-    "@progress/kendo-react-charts": "^5.19.0",
-    "@progress/kendo-react-dateinputs": "^5.19.0",
-    "@progress/kendo-react-dropdowns": "^5.19.0",
-    "@progress/kendo-react-grid": "^5.19.0",
-    "@progress/kendo-react-inputs": "^5.19.0",
-    "@progress/kendo-react-intl": "^5.19.0",
-    "@progress/kendo-theme-default": "^6.7.0",
-    "date-fns": "^2.30.0",
-    "papaparse": "^5.5.2",
+    "@progress/kendo-react-charts": "latest",
+    "@progress/kendo-react-dateinputs": "latest",
+    "@progress/kendo-react-dropdowns": "latest",
+    "@progress/kendo-react-grid": "latest",
+    "@progress/kendo-react-inputs": "latest",
+    "@progress/kendo-theme-default": "latest",
+    "@progress/kendo-theme-material": "latest",
+    "papaparse": "^5.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.8"
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "nodemon": "^3.1.9",
+    "vite": "^5.0.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "node_modules/*",
+      "dist/*",
+      ".git",
+      "*.test.js"
+    ],
+    "delay": "1000",
+    "ext": "jsx,js,css,html,json,csv"
   }
 }

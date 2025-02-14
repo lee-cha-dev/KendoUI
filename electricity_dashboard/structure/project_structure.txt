@@ -1,11 +1,17 @@
-Project Structure (generated on 2025-02-13 19:45:27.731357):
+Project Structure (generated on 2025-02-13 20:24:04.684142):
 
 electricity_dashboard/
 ├── .env
 ├── README.md
 ├── index.html
+├── kendo-ui-license.txt
+├── nodemon.json
 ├── package-lock.json
 ├── package.json
+├── public/
+│   ├── data/
+│   │   ├── customs_electricity_data.csv
+│   │   └── mock-data.jsx
 ├── src/
 │   ├── app.jsx
 │   ├── components/
@@ -13,9 +19,6 @@ electricity_dashboard/
 │   │   ├── ConsumptionCharts.jsx
 │   │   ├── ConsumptionGrid.jsx
 │   │   └── EfficiencyDashboard.jsx
-│   ├── data/
-│   │   ├── customs_electricity_data.csv
-│   │   └── mock-data.jsx
 │   ├── main.jsx
 │   ├── styles/
 │   │   └── app.css

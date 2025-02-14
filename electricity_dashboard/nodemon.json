@@ -1,0 +1,19 @@
+{
+  "restartable": "rs",
+  "verbose": true,
+  "watch": [
+    "src/",
+    "public/",
+    "vite.config.js",
+    "index.html"
+  ],
+  "ext": "jsx,js,ts,tsx,json,css,scss,html,csv",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "dist"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

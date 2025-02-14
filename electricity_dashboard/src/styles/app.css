@@ -1,0 +1,88 @@
+/* Add to your existing CSS file */
+:root {
+    --dark-bg-primary: #1a1a1a;
+    --dark-bg-secondary: #2d2d2d;
+    --dark-text-primary: #ffffff;
+    --dark-text-secondary: #b3b3b3;
+    --dark-border: #404040;
+    --dark-hover: #3d3d3d;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-bg-primary);
+}
+
+/* Kendo UI Dark Theme Customizations */
+.k-dark .k-grid {
+    background-color: var(--dark-bg-secondary);
+    color: var(--dark-text-primary);
+}
+
+.k-dark .k-grid-header {
+    background-color: var(--dark-bg-primary);
+}
+
+.k-dark .k-grid td {
+    border-color: var(--dark-border);
+}
+
+.k-dark .k-dropdown,
+.k-dark .k-datepicker {
+    background-color: var(--dark-bg-secondary);
+    color: var(--dark-text-primary);
+}
+
+.k-dark .k-dropdown:hover,
+.k-dark .k-datepicker:hover {
+    background-color: var(--dark-hover);
+}
+
+.k-dark .k-picker-wrap {
+    background-color: var(--dark-bg-secondary);
+}
+
+/* Custom scrollbar for dark theme */
+.k-dark ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.k-dark ::-webkit-scrollbar-track {
+    background: var(--dark-bg-primary);
+}
+
+.k-dark ::-webkit-scrollbar-thumb {
+    background: var(--dark-border);
+    border-radius: 4px;
+}
+
+.k-dark ::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-hover);
+}
+
+/* Pager customization */
+.k-dark .k-pager-wrap {
+    background-color: var(--dark-bg-secondary);
+    color: var(--dark-text-primary);
+}
+
+.k-dark .k-pager-numbers .k-link {
+    color: var(--dark-text-primary);
+}
+
+.k-dark .k-pager-numbers .k-link:hover {
+    background-color: var(--dark-hover);
+}
+
+/* Filter customization */
+.k-dark .k-filter-menu {
+    background-color: var(--dark-bg-secondary);
+    color: var(--dark-text-primary);
+}
+
+.k-dark .k-filter-menu .k-textbox {
+    background-color: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+}

@@ -4,7 +4,9 @@ import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { DatePicker } from '@progress/kendo-react-dateinputs';
 import { process } from '@progress/kendo-data-query';
 import Papa from 'papaparse';
-import '@progress/kendo-theme-default/dist/all.css';
+
+// Import dark theme
+import '@progress/kendo-theme-material/dist/all.css';
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -17,7 +19,47 @@ const App = () => {
     }
   });
 
-useEffect(() => {
+  // Styles for dark theme
+  const styles = {
+    container: {
+      backgroundColor: '#1a1a1a',
+      color: '#ffffff',
+      minHeight: '100vh',
+      padding: '2rem',
+    },
+    header: {
+      color: '#ffffff',
+      marginBottom: '1.5rem',
+      borderBottom: '1px solid #404040',
+      paddingBottom: '0.5rem'
+    },
+    filterSection: {
+      backgroundColor: '#2d2d2d',
+      padding: '1.5rem',
+      borderRadius: '8px',
+      marginBottom: '1.5rem'
+    },
+    filterLabel: {
+      color: '#b3b3b3',
+      marginBottom: '0.5rem',
+      fontSize: '0.9rem'
+    },
+    gridContainer: {
+      backgroundColor: '#2d2d2d',
+      padding: '1.5rem',
+      borderRadius: '8px',
+    },
+    loading: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      backgroundColor: '#1a1a1a',
+      color: '#ffffff'
+    }
+  };
+
+  useEffect(() => {
     const loadData = async () => {
       console.log('Starting to load data...');
       try {
@@ -37,7 +79,6 @@ useEffect(() => {
             console.log('CSV parsing complete. First row:', results.data[0]);
             console.log('Column headers:', results.meta.fields);
 
-            // Transform the data
             const transformedData = results.data.map(row => ({
               ...row,
               timestamp: new Date(row.timestamp),
@@ -77,7 +118,6 @@ useEffect(() => {
     setGridDataState(e.dataState);
   };
 
-  // Filter data based on selected filters
   const filteredData = React.useMemo(() => {
     let result = [...data];
 
@@ -96,72 +136,79 @@ useEffect(() => {
     return result;
   }, [data, filter]);
 
-  // Process the data with Kendo UI Data Query
   const processedData = process(filteredData, gridDataState);
 
   if (loading) {
-    return <div>Loading data...</div>;
+    return <div style={styles.loading}>Loading data...</div>;
   }
 
   return (
-    <div className="container mx-4 my-8">
-      <h1 className="text-2xl font-bold mb-6">Electricity Consumption Dashboard</h1>
+      <div className="k-dark" style={styles.container}>
+        <h1 style={styles.header}>Electricity Consumption Dashboard</h1>
 
-      <div className="flex gap-4 mb-6">
-        <div>
-          <label className="block mb-2">Building Type</label>
-          <DropDownList
-            data={buildingTypes}
-            value={filter.building}
-            onChange={(e) => setFilter({...filter, building: e.value})}
-          />
-        </div>
-        <div>
-          <label className="block mb-2">Date Range</label>
-          <div className="flex gap-2">
-            <DatePicker
-              value={filter.dateRange.start}
-              onChange={(e) => setFilter({
-                ...filter,
-                dateRange: {...filter.dateRange, start: e.value}
-              })}
-            />
-            <DatePicker
-              value={filter.dateRange.end}
-              onChange={(e) => setFilter({
-                ...filter,
-                dateRange: {...filter.dateRange, end: e.value}
-              })}
-            />
+        <div style={styles.filterSection}>
+          <div className="flex gap-4">
+            <div>
+              <label style={styles.filterLabel}>Building Type</label>
+              <DropDownList
+                  data={buildingTypes}
+                  value={filter.building}
+                  onChange={(e) => setFilter({...filter, building: e.value})}
+                  className="k-dark"
+              />
+            </div>
+            <div>
+              <label style={styles.filterLabel}>Date Range</label>
+              <div className="flex gap-2">
+                <DatePicker
+                    value={filter.dateRange.start}
+                    onChange={(e) => setFilter({
+                      ...filter,
+                      dateRange: {...filter.dateRange, start: e.value}
+                    })}
+                    className="k-dark"
+                />
+                <DatePicker
+                    value={filter.dateRange.end}
+                    onChange={(e) => setFilter({
+                      ...filter,
+                      dateRange: {...filter.dateRange, end: e.value}
+                    })}
+                    className="k-dark"
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <Grid
-        data={processedData}
-        {...gridDataState}
-        onDataStateChange={handleGridDataStateChange}
-        sortable={true}
-        filterable={true}
-        pageable={{
-          buttonCount: 5,
-          pageSizes: [10, 20, 50],
-          pageSize: 10
-        }}
-      >
-        <GridColumn field="timestamp" title="Timestamp" format="{0:dd/MM/yyyy HH:mm}" />
-        <GridColumn field="customs_office" title="Customs Office" />
-        <GridColumn field="building_type" title="Building Type" />
-        <GridColumn field="equipment_type" title="Equipment Type" />
-        <GridColumn field="department" title="Department" />
-        <GridColumn field="consumption_kwh" title="Consumption (kWh)" format="{0:n2}" />
-        <GridColumn field="cost_usd" title="Cost (USD)" format="{0:c2}" />
-        <GridColumn field="peak_load" title="Peak Load" cell={(props) => (
-          <td>{props.dataItem[props.field] ? '✓' : '✗'}</td>
-        )} />
-        <GridColumn field="efficiency_score" title="Efficiency Score" format="{0:p2}" />
-      </Grid>
-    </div>
+        <div style={styles.gridContainer}>
+          <Grid
+              data={processedData}
+              {...gridDataState}
+              onDataStateChange={handleGridDataStateChange}
+              sortable={true}
+              filterable={true}
+              pageable={{
+                buttonCount: 5,
+                pageSizes: [10, 20, 50],
+                pageSize: 10
+              }}
+              className="k-dark"
+          >
+            <GridColumn field="timestamp" title="Timestamp" format="{0:dd/MM/yyyy HH:mm}" />
+            <GridColumn field="customs_office" title="Customs Office" />
+            <GridColumn field="building_type" title="Building Type" />
+            <GridColumn field="equipment_type" title="Equipment Type" />
+            <GridColumn field="department" title="Department" />
+            <GridColumn field="consumption_kwh" title="Consumption (kWh)" format="{0:n2}" />
+            <GridColumn field="cost_usd" title="Cost (USD)" format="{0:c2}" />
+            <GridColumn field="peak_load" title="Peak Load" cell={(props) => (
+                <td>{props.dataItem[props.field] ? '✓' : '✗'}</td>
+            )} />
+            <GridColumn field="efficiency_score" title="Efficiency Score" format="{0:p2}" />
+          </Grid>
+        </div>
+      </div>
   );
 };
 
